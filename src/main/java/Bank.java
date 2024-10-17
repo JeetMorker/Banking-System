@@ -1,0 +1,30 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Bank {
+	private Map<String, AllAccounts> accounts;
+
+	Bank() {
+		accounts = new HashMap<>();
+	}
+
+	public Map<String, AllAccounts> getAccounts() {
+		return accounts;
+	}
+
+	public void addAccount(AllAccounts account) {
+		accounts.put(account.getID(), account);
+	}
+
+	public AllAccounts getAccount(String accID) {
+		return accounts.get(accID);
+	}
+
+	public void deposit(String accID, double amount) {
+		accounts.get(accID).deposit(amount);
+	}
+
+	public void withdraw(String accID, double amount) {
+		accounts.get(accID).withdraw(amount);
+	}
+}
