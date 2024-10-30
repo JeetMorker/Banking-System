@@ -13,9 +13,7 @@ public class CreateValidator {
 
 	public boolean validID(String accID) {
 		if (isNum(accID) && (accID.length() == 8)) {
-			if (!bank.checkExistingID(accID)) {
-				return true;
-			}
+			return !bank.checkExistingID(accID);
 		}
 		return false;
 	}
