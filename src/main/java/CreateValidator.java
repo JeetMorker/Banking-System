@@ -8,11 +8,24 @@ public class CreateValidator {
 
 	public boolean validate(String command) {
 		String[] parsedCommand = command.split(" ");
-		if (bank.checkExistingID(parsedCommand[2])) {
-			return false;
-		} else {
-			return true;
-		}
+		return validID(parsedCommand[2]);
 	}
 
+	public boolean validID(String accID) {
+		if (isNum(accID) && (accID.length() == 8)) {
+			if (!bank.checkExistingID(accID)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean isNum(String value) {
+		for (char num : value.toCharArray()) {
+			if (!Character.isDigit(num)) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
