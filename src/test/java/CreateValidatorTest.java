@@ -40,7 +40,7 @@ public class CreateValidatorTest {
 
 	@Test
 	void id_with_letters_invalid() {
-		boolean actual = createValidator.validate("create checking 1234567A 2.5");
+		boolean actual = createValidator.validate("create checking 12345ABC 2.5");
 
 		assertFalse(actual);
 	}
@@ -48,6 +48,48 @@ public class CreateValidatorTest {
 	@Test
 	void id_less_than_eight_digits_invalid() {
 		boolean actual = createValidator.validate("create checking 1234567 2.5");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void apr_above_10_invalid() {
+		boolean actual = createValidator.validate("create checking 12345678 10.1");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void apr_of_0_is_valid() {
+		boolean actual = createValidator.validate("create checking 12345678 0");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void apr_of_10_is_valid() {
+		boolean actual = createValidator.validate("create checking 12345678 10");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void decimal_apr_is_valid() {
+		boolean actual = createValidator.validate("create checking 12345678 5.5");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void negative_apr_is_invalid() {
+		boolean actual = createValidator.validate("create checking 12345678 -5");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void apr_cant_have_letters() {
+		boolean actual = createValidator.validate("create checking 12345678 five");
 
 		assertFalse(actual);
 	}
