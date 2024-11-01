@@ -36,4 +36,10 @@ public class Bank {
 		}
 
 	}
+
+	public boolean checkMaxDesposit(String accID, double amount) {
+		AllAccounts account = accounts.get(accID);
+		return account.checkMaxDeposit(amount);
+
+	}
 }

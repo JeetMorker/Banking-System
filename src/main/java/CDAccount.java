@@ -4,4 +4,9 @@ public class CDAccount extends AllAccounts {
 		super(accID, apr, balance);
 
 	}
+
+	@Override
+	public boolean checkMaxDeposit(Double amount) {
+		return false;
+	}
 }

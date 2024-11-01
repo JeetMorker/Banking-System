@@ -33,4 +33,6 @@ public abstract class AllAccounts {
 		}
 	}
 
+	public abstract boolean checkMaxDeposit(Double amount);
+
 }

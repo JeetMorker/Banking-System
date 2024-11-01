@@ -77,9 +77,9 @@ public class CreateValidator {
 		return true;
 	}
 
-	private boolean isDouble(String apr) {
+	private boolean isDouble(String num) {
 		try {
-			Double.parseDouble(apr);
+			Double.parseDouble(num);
 			return true;
 		} catch (NumberFormatException e) {
 			return false;

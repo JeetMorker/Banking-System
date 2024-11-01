@@ -321,4 +321,11 @@ public class CreateValidatorTest {
 		assertTrue(actual);
 	}
 
+	@Test
+	void command_in_wrong_order_is_invalid() {
+		boolean actual = createValidator.validate("checking create 12345678 2.5");
+
+		assertFalse(actual);
+	}
+
 }
