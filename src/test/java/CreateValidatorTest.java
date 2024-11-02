@@ -328,4 +328,11 @@ public class CreateValidatorTest {
 		assertFalse(actual);
 	}
 
+	@Test
+	void create_command_with_no_spaces_is_invalid() {
+		boolean actual = createValidator.validate("createchecking123456782.5");
+
+		assertFalse(actual);
+	}
+
 }

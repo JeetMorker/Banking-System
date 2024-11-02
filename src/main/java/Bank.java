@@ -29,11 +29,7 @@ public class Bank {
 	}
 
 	public boolean checkExistingID(String accID) {
-		if (accounts.get(accID) != null) {
-			return true;
-		} else {
-			return false;
-		}
+		return accounts.get(accID) != null;
 
 	}
 

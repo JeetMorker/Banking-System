@@ -192,4 +192,11 @@ public class DepositValidatorTest {
 		assertFalse(actual);
 	}
 
+	@Test
+	void deposit_command_with_no_spaces_is_invalid() {
+		boolean actual = depositValidator.validate("deposit12345678500");
+
+		assertFalse(actual);
+	}
+
 }

@@ -45,9 +45,7 @@ public class CreateValidator {
 	public boolean checkAmountCD(String[] parsedCommand) {
 		if (isDouble(parsedCommand[4])) {
 			double amount = Double.parseDouble((parsedCommand[4]));
-			if (amount >= 1000 && amount <= 10000) {
-				return true;
-			}
+			return amount >= 1000 && amount <= 10000;
 		}
 		return false;
 	}
