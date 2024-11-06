@@ -1,0 +1,59 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class DepositProcessorTest {
+	DepositProcessor depositProcessor;
+	Bank bank;
+	CheckingAccount checkingAccount;
+
+	@BeforeEach
+	void setup() {
+		bank = new Bank();
+		depositProcessor = new DepositProcessor(bank);
+		checkingAccount = new CheckingAccount("12345678", 2.5);
+		bank.addAccount(checkingAccount);
+	}
+
+	@Test
+	void correctly_deposits_right_amount() {
+		depositProcessor.process("deposit 12345678 100");
+		double actual = checkingAccount.getBalance();
+
+		assertEquals(100, actual);
+	}
+
+	@Test
+	void depositing_twice_adds_amount_correctly() {
+		depositProcessor.process("deposit 12345678 100");
+		depositProcessor.process("deposit 12345678 200");
+		double actual = checkingAccount.getBalance();
+
+		assertEquals(300, actual);
+	}
+
+	@Test
+	void deposits_to_correct_account_when_there_are_multiple_accounts() {
+		SavingsAccount savingsAccount = new SavingsAccount("87654321", 2.0);
+		bank.addAccount(savingsAccount);
+		depositProcessor.process("deposit 12345678 100");
+		double actual = checkingAccount.getBalance();
+
+		assertEquals(100, actual);
+	}
+
+	@Test
+	void can_deposit_to_multiple_accounts() {
+		SavingsAccount savingsAccount = new SavingsAccount("87654321", 2.0);
+		bank.addAccount(savingsAccount);
+		depositProcessor.process("deposit 12345678 100");
+		depositProcessor.process("deposit 87654321 200");
+		double checkingAmount = checkingAccount.getBalance();
+		double savingsAmount = savingsAccount.getBalance();
+
+		assertEquals(100, checkingAmount);
+		assertEquals(200, savingsAmount);
+	}
+
+}
