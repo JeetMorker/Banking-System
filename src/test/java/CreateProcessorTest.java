@@ -45,4 +45,30 @@ public class CreateProcessorTest {
 		assertEquals(1000, actualBalance);
 
 	}
+
+	@Test
+	void creates_multiple_accounts_correctly() {
+		createProcessor.process("create savings 12345678 2.5");
+		createProcessor.process("create checking 87654321 5.0");
+		String firstID = bank.getAccount("12345678").getID();
+		double firstAPR = bank.getAccount("12345678").getAPR();
+		String secondID = bank.getAccount("87654321").getID();
+		double secondAPR = bank.getAccount("87654321").getAPR();
+
+		assertEquals("12345678", firstID);
+		assertEquals(2.5, firstAPR);
+		assertEquals("87654321", secondID);
+		assertEquals(5.0, secondAPR);
+
+	}
+
+	@Test
+	void works_with_capital_letters() {
+		createProcessor.process("CrEAtE ChEcking 12345678 7.8");
+		String actualID = bank.getAccount("12345678").getID();
+		double actualAPR = bank.getAccount("12345678").getAPR();
+
+		assertEquals("12345678", actualID);
+		assertEquals(7.8, actualAPR);
+	}
 }
