@@ -19,7 +19,7 @@ public class DepositProcessorTest {
 	@Test
 	void correctly_deposits_right_amount() {
 		depositProcessor.process("deposit 12345678 100");
-		double actual = checkingAccount.getBalance();
+		double actual = bank.getAccount("12345678").getBalance();
 
 		assertEquals(100, actual);
 	}
@@ -28,7 +28,7 @@ public class DepositProcessorTest {
 	void depositing_twice_adds_amount_correctly() {
 		depositProcessor.process("deposit 12345678 100");
 		depositProcessor.process("deposit 12345678 200");
-		double actual = checkingAccount.getBalance();
+		double actual = bank.getAccount("12345678").getBalance();
 
 		assertEquals(300, actual);
 	}
@@ -38,8 +38,8 @@ public class DepositProcessorTest {
 		SavingsAccount savingsAccount = new SavingsAccount("87654321", 2.0);
 		bank.addAccount(savingsAccount);
 		depositProcessor.process("deposit 12345678 100");
-		double checkingActual = checkingAccount.getBalance();
-		double savingsActual = savingsAccount.getBalance();
+		double checkingActual = bank.getAccount("12345678").getBalance();
+		double savingsActual = bank.getAccount("87654321").getBalance();
 
 		assertEquals(100, checkingActual);
 		assertEquals(0, savingsActual);
@@ -51,8 +51,8 @@ public class DepositProcessorTest {
 		bank.addAccount(savingsAccount);
 		depositProcessor.process("deposit 12345678 100");
 		depositProcessor.process("deposit 87654321 200");
-		double checkingAmount = checkingAccount.getBalance();
-		double savingsAmount = savingsAccount.getBalance();
+		double checkingAmount = bank.getAccount("12345678").getBalance();
+		double savingsAmount = bank.getAccount("87654321").getBalance();
 
 		assertEquals(100, checkingAmount);
 		assertEquals(200, savingsAmount);
@@ -61,7 +61,7 @@ public class DepositProcessorTest {
 	@Test
 	void deposit_works_with_capital_letters() {
 		depositProcessor.process("DePOsiT 12345678 500");
-		double actual = checkingAccount.getBalance();
+		double actual = bank.getAccount("12345678").getBalance();
 
 		assertEquals(500, actual);
 	}
@@ -69,7 +69,7 @@ public class DepositProcessorTest {
 	@Test
 	void deposit_to_checking_correctly() {
 		depositProcessor.process("deposit 12345678 200.5");
-		double actual = checkingAccount.getBalance();
+		double actual = bank.getAccount("12345678").getBalance();
 
 		assertEquals(200.5, actual);
 	}
@@ -79,10 +79,27 @@ public class DepositProcessorTest {
 		SavingsAccount savingsAccount = new SavingsAccount("56781234", 2);
 		bank.addAccount(savingsAccount);
 		depositProcessor.process("deposit 56781234 300");
-		double actual = savingsAccount.getBalance();
+		double actual = bank.getAccount("56781234").getBalance();
 
 		assertEquals(300, actual);
 
+	}
+
+	@Test
+	void deposit_with_decimals() {
+		depositProcessor.process("deposit 12345678 200.5");
+		double actual = bank.getAccount("12345678").getBalance();
+
+		assertEquals(200.5, actual);
+
+	}
+
+	@Test
+	void depositing_zero_works() {
+		depositProcessor.process("deposit 12345678 0");
+		double actual = bank.getAccount("12345678").getBalance();
+
+		assertEquals(0, actual);
 	}
 
 }

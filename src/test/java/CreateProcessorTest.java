@@ -71,4 +71,14 @@ public class CreateProcessorTest {
 		assertEquals("12345678", actualID);
 		assertEquals(7.8, actualAPR);
 	}
+
+	@Test
+	void does_not_create_duplicate_account() {
+		createProcessor.process("create checking 12345678 2.4");
+		createProcessor.process("create checking 12345678 2.4");
+		int actual = bank.getAccounts().size();
+
+		assertEquals(1, actual);
+
+	}
 }
