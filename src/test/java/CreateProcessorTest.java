@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ public class CreateProcessorTest {
 
 		assertEquals("12345678", actualID);
 		assertEquals(1.0, actualAPR);
+		assertTrue(bank.getAccount("12345678") instanceof CheckingAccount);
 	}
 
 	@Test
@@ -31,6 +33,7 @@ public class CreateProcessorTest {
 
 		assertEquals("87654321", actualID);
 		assertEquals(2.5, actualAPR);
+		assertTrue(bank.getAccount("87654321") instanceof SavingsAccount);
 	}
 
 	@Test
@@ -43,6 +46,7 @@ public class CreateProcessorTest {
 		assertEquals("56781234", actualID);
 		assertEquals(3.1, actualAPR);
 		assertEquals(1000, actualBalance);
+		assertTrue(bank.getAccount("56781234") instanceof CDAccount);
 
 	}
 
@@ -57,8 +61,10 @@ public class CreateProcessorTest {
 
 		assertEquals("12345678", firstID);
 		assertEquals(2.5, firstAPR);
+		assertTrue(bank.getAccount("12345678") instanceof SavingsAccount);
 		assertEquals("87654321", secondID);
 		assertEquals(5.0, secondAPR);
+		assertTrue(bank.getAccount("87654321") instanceof CheckingAccount);
 
 	}
 
@@ -70,6 +76,7 @@ public class CreateProcessorTest {
 
 		assertEquals("12345678", actualID);
 		assertEquals(7.8, actualAPR);
+		assertTrue(bank.getAccount("12345678") instanceof CheckingAccount);
 	}
 
 	@Test

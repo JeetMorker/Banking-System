@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,5 +43,12 @@ public class CommandStoringTest {
 		int actual = commandStoring.getInvalidCommands().size();
 
 		assertEquals(0, actual);
+	}
+
+	@Test
+	void specific_command_is_stored() {
+		commandStoring.addInvalidCommand(INVALID_COMMAND);
+
+		assertTrue(commandStoring.getInvalidCommands().contains(INVALID_COMMAND));
 	}
 }
