@@ -1,3 +1,5 @@
+package banking;
+
 public class AllCommandProcessor {
 	Bank bank;
 	CreateProcessor createProcessor;

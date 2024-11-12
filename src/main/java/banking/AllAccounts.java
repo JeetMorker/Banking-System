@@ -1,3 +1,5 @@
+package banking;
+
 public abstract class AllAccounts {
 	double balance;
 	double apr;

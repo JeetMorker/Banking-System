@@ -1,3 +1,5 @@
+package banking;
+
 public class CheckingAccount extends AllAccounts {
 
 	public CheckingAccount(String accID, double apr) {
@@ -5,7 +7,7 @@ public class CheckingAccount extends AllAccounts {
 	}
 
 	@Override
-    public boolean checkMaxDeposit(Double amount) {
+	public boolean checkMaxDeposit(Double amount) {
 		return amount >= 0 && amount <= 1000;
 
 	}

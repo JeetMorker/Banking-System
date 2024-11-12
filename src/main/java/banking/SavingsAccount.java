@@ -1,3 +1,5 @@
+package banking;
+
 public class SavingsAccount extends AllAccounts {
 
 	public SavingsAccount(String accID, double apr) {
