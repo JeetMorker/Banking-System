@@ -13,7 +13,6 @@ public class AllCommandValidator {
 	public boolean validate(String command) {
 		String[] parsedCommand = command.split(" ");
 		if (parsedCommand[0].equalsIgnoreCase("create")) {
-
 			return createValidator.validate(command);
 		} else if (parsedCommand[0].equalsIgnoreCase("deposit")) {
 			return depositValidator.validate(command);

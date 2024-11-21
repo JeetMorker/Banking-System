@@ -12,4 +12,9 @@ public class CheckingAccount extends AllAccounts {
 
 	}
 
+	@Override
+	public boolean checkWithdrawAmount(double amount) {
+		return amount >= 0 && amount <= 400;
+	}
+
 }

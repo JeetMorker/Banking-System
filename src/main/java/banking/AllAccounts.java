@@ -37,4 +37,5 @@ public abstract class AllAccounts {
 
 	public abstract boolean checkMaxDeposit(Double amount);
 
+	public abstract boolean checkWithdrawAmount(double amount);
 }

@@ -40,4 +40,9 @@ public class Bank {
 		return account.checkMaxDeposit(amount);
 
 	}
+
+	public boolean checkWithdrawAmount(String accID, double amount) {
+		AllAccounts account = accounts.get(accID);
+		return account.checkWithdrawAmount(amount);
+	}
 }

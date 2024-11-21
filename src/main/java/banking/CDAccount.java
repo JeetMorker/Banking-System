@@ -11,4 +11,9 @@ public class CDAccount extends AllAccounts {
 	public boolean checkMaxDeposit(Double amount) {
 		return false;
 	}
+
+	@Override
+	public boolean checkWithdrawAmount(double amount) {
+		return amount >= balance;
+	}
 }
