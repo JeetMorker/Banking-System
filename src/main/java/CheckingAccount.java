@@ -4,4 +4,10 @@ public class CheckingAccount extends AllAccounts {
 		super(accID, apr, 0);
 	}
 
+	@Override
+    public boolean checkMaxDeposit(Double amount) {
+		return amount >= 0 && amount <= 1000;
+
+	}
+
 }

@@ -27,4 +27,15 @@ public class Bank {
 	public void withdraw(String accID, double amount) {
 		accounts.get(accID).withdraw(amount);
 	}
+
+	public boolean checkExistingID(String accID) {
+		return accounts.get(accID) != null;
+
+	}
+
+	public boolean checkMaxDesposit(String accID, double amount) {
+		AllAccounts account = accounts.get(accID);
+		return account.checkMaxDeposit(amount);
+
+	}
 }
