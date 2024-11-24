@@ -9,7 +9,10 @@ public class PassTimeValidator {
 
 	public boolean validate(String command) {
 		String[] parsedCommand = command.split(" ");
-		return checkMonthNum(parsedCommand);
+		if (parsedCommand[0].equalsIgnoreCase("pass") && parsedCommand.length == 2) {
+			return checkMonthNum(parsedCommand);
+		}
+		return false;
 	}
 
 	public boolean checkMonthNum(String[] parsedCommand) {

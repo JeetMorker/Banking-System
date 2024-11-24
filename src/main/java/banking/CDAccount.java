@@ -8,6 +8,13 @@ public class CDAccount extends AllAccounts {
 	}
 
 	@Override
+	public void accrueAPR() {
+		for (int i = 0; i < 4; i++) {
+			super.accrueAPR();
+		}
+	}
+
+	@Override
 	public boolean checkMaxDeposit(Double amount) {
 		return false;
 	}

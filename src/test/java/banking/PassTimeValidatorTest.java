@@ -72,4 +72,32 @@ public class PassTimeValidatorTest {
 		assertFalse(actual);
 	}
 
+	@Test
+	void pass_in_capitals_is_valid() {
+		boolean actual = passTimeValidator.validate("PASS 10");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void pass_spelled_wrong_is_invalid() {
+		boolean actual = passTimeValidator.validate("ps 10");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void month_missing_is_invalid() {
+		boolean actual = passTimeValidator.validate("pass");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void pass_missing_is_invalid() {
+		boolean actual = passTimeValidator.validate("10");
+
+		assertFalse(actual);
+	}
+
 }

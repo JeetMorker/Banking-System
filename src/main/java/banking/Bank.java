@@ -1,6 +1,8 @@
 package banking;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Bank {
@@ -35,7 +37,7 @@ public class Bank {
 
 	}
 
-	public boolean checkMaxDesposit(String accID, double amount) {
+	public boolean checkMaxDeposit(String accID, double amount) {
 		AllAccounts account = accounts.get(accID);
 		return account.checkMaxDeposit(amount);
 
@@ -44,5 +46,34 @@ public class Bank {
 	public boolean checkWithdrawAmount(String accID, double amount) {
 		AllAccounts account = accounts.get(accID);
 		return account.checkWithdrawAmount(amount);
+	}
+
+	public void passTime(int months) {
+		while (months > 0) {
+			List<String> removal = new ArrayList<>();
+
+			for (String accID : accounts.keySet()) {
+				AllAccounts account = accounts.get(accID);
+				if (account.balance == 0) {
+					removal.add(accID);
+				}
+				if (account.balance < 100) {
+					account.balance -= 25;
+				}
+				account.addTime();
+				account.accrueAPR();
+			}
+			for (String accID : removal) {
+				accounts.remove(accID);
+			}
+			months -= 1;
+
+		}
+
+	}
+
+	public int getTime(String accID) {
+		AllAccounts account = accounts.get(accID);
+		return account.getTime();
 	}
 }

@@ -30,7 +30,7 @@ public class DepositValidator {
 	public boolean checkValidDepositAmount(String[] parsedCommand) {
 		if (isDouble(parsedCommand[2])) {
 			double amount = Double.parseDouble(parsedCommand[2]);
-			return bank.checkMaxDesposit(parsedCommand[1], amount);
+			return bank.checkMaxDeposit(parsedCommand[1], amount);
 		}
 		return false;
 	}
