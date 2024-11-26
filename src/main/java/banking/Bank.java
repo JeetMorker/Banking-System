@@ -43,9 +43,9 @@ public class Bank {
 
 	}
 
-	public boolean checkWithdrawAmount(String accID, double amount) {
+	public boolean checkValidWithdraw(String accID, double amount) {
 		AllAccounts account = accounts.get(accID);
-		return account.checkWithdrawAmount(amount);
+		return account.checkValidWithdraw(amount);
 	}
 
 	public void passTime(int months) {

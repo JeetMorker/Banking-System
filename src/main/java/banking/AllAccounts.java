@@ -5,6 +5,7 @@ public abstract class AllAccounts {
 	double apr;
 	String accID;
 	int time;
+	boolean withdrawAlready = false;
 
 	public AllAccounts(String accID, double apr, double balance) {
 		this.accID = accID;
@@ -51,7 +52,7 @@ public abstract class AllAccounts {
 
 	public abstract boolean checkMaxDeposit(Double amount);
 
-	public abstract boolean checkWithdrawAmount(double amount);
+	public abstract boolean checkValidWithdraw(double amount);
 
 	public int getTime() {
 		return time;

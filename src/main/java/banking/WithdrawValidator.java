@@ -9,17 +9,23 @@ public class WithdrawValidator {
 
 	public boolean validate(String command) {
 		String[] parsedCommand = command.split(" ");
-		return checkIfCorrectAmount(parsedCommand);
+		if (parsedCommand.length == 3 && parsedCommand[0].equalsIgnoreCase("withdraw")) {
+			return checkValidWithdraw(parsedCommand);
+		}
+		return false;
 	}
 
-	public boolean checkIfCorrectAmount(String[] parsedCommand) {
+	public boolean checkValidWithdraw(String[] parsedCommand) {
 		double amount;
 		try {
 			amount = Double.parseDouble(parsedCommand[2]);
 		} catch (NumberFormatException e) {
 			return false;
 		}
-		return bank.checkWithdrawAmount(parsedCommand[1], amount);
+		if (bank.checkExistingID(parsedCommand[1])) {
+			return bank.checkValidWithdraw(parsedCommand[1], amount);
+		}
+		return false;
 	}
 
 }

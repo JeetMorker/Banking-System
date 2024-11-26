@@ -20,7 +20,10 @@ public class CDAccount extends AllAccounts {
 	}
 
 	@Override
-	public boolean checkWithdrawAmount(double amount) {
-		return amount >= balance;
+	public boolean checkValidWithdraw(double amount) {
+		if (time >= 12) {
+			return amount >= balance;
+		}
+		return false;
 	}
 }
