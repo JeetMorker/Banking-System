@@ -5,7 +5,6 @@ public abstract class AllAccounts {
 	double apr;
 	String accID;
 	int time;
-	boolean withdrawAlready = false;
 
 	public AllAccounts(String accID, double apr, double balance) {
 		this.accID = accID;

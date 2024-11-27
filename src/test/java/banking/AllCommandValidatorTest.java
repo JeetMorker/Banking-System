@@ -62,6 +62,56 @@ public class AllCommandValidatorTest {
 	}
 
 	@Test
+	void valid_withdraw() {
+		boolean actual = allCommandValidator.validate("withdraw 87654321 200");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void withdraw_in_capitals_is_valid() {
+		boolean actual = allCommandValidator.validate("WITHDRAW 87654321 200");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void valid_pass() {
+		boolean actual = allCommandValidator.validate("pass 1");
+
+		assertTrue(actual);
+
+	}
+
+	@Test
+	void pass_in_capitals_is_valid() {
+		boolean actual = allCommandValidator.validate("PASS 1");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_deposit() {
+		boolean actual = allCommandValidator.validate("deposit 12345678 -3");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_withdraw() {
+		boolean actual = allCommandValidator.validate("withdraw 12345678 -4");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_pass() {
+		boolean actual = allCommandValidator.validate("pass -2");
+
+		assertFalse(actual);
+	}
+
+	@Test
 	void command_missing_is_invalid() {
 		boolean actual = allCommandValidator.validate("12345678 2.3");
 
