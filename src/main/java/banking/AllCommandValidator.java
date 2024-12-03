@@ -6,12 +6,14 @@ public class AllCommandValidator {
 	private final DepositValidator depositValidator;
 	private final WithdrawValidator withdrawValidator;
 	private final PassTimeValidator passTimeValidator;
+	private final TransferValidator transferValidator;
 
 	public AllCommandValidator(Bank bank) {
 		this.createValidator = new CreateValidator(bank);
 		this.depositValidator = new DepositValidator(bank);
 		this.withdrawValidator = new WithdrawValidator(bank);
 		this.passTimeValidator = new PassTimeValidator(bank);
+		this.transferValidator = new TransferValidator(bank);
 	}
 
 	public boolean validate(String command) {
@@ -24,6 +26,8 @@ public class AllCommandValidator {
 			return withdrawValidator.validate(command);
 		} else if (parsedCommand[0].equalsIgnoreCase("pass")) {
 			return passTimeValidator.validate(command);
+		} else if (parsedCommand[0].equalsIgnoreCase("transfer")) {
+			return transferValidator.validate(command);
 		}
 		return false;
 	}

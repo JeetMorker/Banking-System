@@ -10,10 +10,15 @@ public class CommandStoringTest {
 	public static final String INVALID_COMMAND = "crate checking 12345678 2";
 	public static final String ANOTHER_INVALID_COMMAND = "depo 50 12345678";
 	CommandStoring commandStoring;
+	Bank bank;
+	CheckingAccount checkingAccount;
 
 	@BeforeEach
 	void setUp() {
-		commandStoring = new CommandStoring();
+		bank = new Bank();
+		commandStoring = new CommandStoring(bank);
+		checkingAccount = new CheckingAccount("12345678", 2.2);
+		bank.addAccount(checkingAccount);
 	}
 
 	@Test
@@ -52,5 +57,12 @@ public class CommandStoringTest {
 		commandStoring.addInvalidCommand(INVALID_COMMAND);
 
 		assertTrue(commandStoring.getInvalidCommands().contains(INVALID_COMMAND));
+	}
+
+	@Test
+	void correctAccType() {
+		String actual = commandStoring.getAccState("12345678");
+
+		assertEquals("Checking", actual);
 	}
 }

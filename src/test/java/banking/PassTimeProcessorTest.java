@@ -77,4 +77,22 @@ public class PassTimeProcessorTest {
 
 	}
 
+	@Test
+	void account_closes_if_balance_is_0() {
+		passTimeProcessor.process("pass 1");
+
+		int actual = bank.getAccounts().size();
+
+		assertEquals(1, actual);
+	}
+
+	@Test
+	void deduction_occurs_if_low_balance() {
+		bank.deposit("12345678", 45);
+		passTimeProcessor.process("pass 1");
+		double actual = bank.getAccount("12345678").getBalance();
+
+		assertEquals(20.05, actual);
+	}
+
 }

@@ -84,6 +84,15 @@ public class AllCommandValidatorTest {
 	}
 
 	@Test
+	void valid_transfer() {
+		SavingsAccount save = new SavingsAccount("12345678", 2.5);
+		bank.addAccount(save);
+		boolean actual = allCommandValidator.validate("TRAnsfer 12345678 87654321 200");
+
+		assertTrue(actual);
+	}
+
+	@Test
 	void pass_in_capitals_is_valid() {
 		boolean actual = allCommandValidator.validate("PASS 1");
 
@@ -112,6 +121,13 @@ public class AllCommandValidatorTest {
 	}
 
 	@Test
+	void invalid_transfer() {
+		boolean actual = allCommandValidator.validate("transfer 12345678");
+
+		assertFalse(actual);
+	}
+
+	@Test
 	void command_missing_is_invalid() {
 		boolean actual = allCommandValidator.validate("12345678 2.3");
 
@@ -124,4 +140,5 @@ public class AllCommandValidatorTest {
 
 		assertFalse(actual);
 	}
+
 }

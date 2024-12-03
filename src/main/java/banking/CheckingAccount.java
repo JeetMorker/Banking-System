@@ -17,4 +17,13 @@ public class CheckingAccount extends AllAccounts {
 		return amount >= 0 && amount <= 400;
 	}
 
+	@Override
+	public boolean canTransfer() {
+		return true;
+	}
+
+	@Override
+	public String getAccType() {
+		return "Checking";
+	}
 }

@@ -26,4 +26,15 @@ public class CDAccount extends AllAccounts {
 		}
 		return false;
 	}
+
+	@Override
+	public boolean canTransfer() {
+		return false;
+	}
+
+	@Override
+	public String getAccType() {
+		return "Cd";
+	}
+
 }

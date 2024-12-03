@@ -32,4 +32,13 @@ public class SavingsAccount extends AllAccounts {
 		withdrawAlready = true;
 	}
 
+	@Override
+	public boolean canTransfer() {
+		return true;
+	}
+
+	@Override
+	public String getAccType() {
+		return "Savings";
+	}
 }

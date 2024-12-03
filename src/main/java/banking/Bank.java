@@ -48,6 +48,11 @@ public class Bank {
 		return account.checkValidWithdraw(amount);
 	}
 
+	public void addValidCommand(String command, String accID) {
+		AllAccounts account = accounts.get(accID);
+		account.addCommand(command);
+	}
+
 	public void passTime(int months) {
 		while (months > 0) {
 			List<String> removal = new ArrayList<>();
@@ -72,8 +77,20 @@ public class Bank {
 
 	}
 
+	public String getAccType(String accID) {
+		AllAccounts account = accounts.get(accID);
+
+		return account.getAccType();
+
+	}
+
 	public int getTime(String accID) {
 		AllAccounts account = accounts.get(accID);
 		return account.getTime();
+	}
+
+	public boolean canTransfer(String accID) {
+		AllAccounts account = accounts.get(accID);
+		return account.canTransfer();
 	}
 }
