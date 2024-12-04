@@ -2,7 +2,7 @@ package banking;
 
 public class PassTimeProcessor {
 
-	private Bank bank;
+	private final Bank bank;
 
 	public PassTimeProcessor(Bank bank) {
 		this.bank = bank;

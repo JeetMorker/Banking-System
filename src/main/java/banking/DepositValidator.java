@@ -1,7 +1,7 @@
 package banking;
 
 public class DepositValidator {
-	private Bank bank;
+	private final Bank bank;
 
 	public DepositValidator(Bank bank) {
 		this.bank = bank;

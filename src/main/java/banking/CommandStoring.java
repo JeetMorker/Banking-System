@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 public class CommandStoring {
-	private List<String> invalidCommands;
-	private Bank bank;
-	private List<String> outputList;
+	private final List<String> invalidCommands;
+	private final Bank bank;
+	private final List<String> outputList;
 
 	private Map<String, List<String>> validCommands;
 

@@ -1,7 +1,7 @@
 package banking;
 
 public class WithdrawValidator {
-	private Bank bank;
+	private final Bank bank;
 
 	public WithdrawValidator(Bank bank) {
 		this.bank = bank;

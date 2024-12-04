@@ -1,7 +1,7 @@
 package banking;
 
 public class WithdrawProcessor {
-	private Bank bank;
+	private final Bank bank;
 
 	public WithdrawProcessor(Bank bank) {
 		this.bank = bank;

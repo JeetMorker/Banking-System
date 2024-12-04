@@ -69,10 +69,6 @@ public class MasterControlTest {
 		input.add("Create cd 23456789 1.2 2000");
 		List<String> actual = masterControl.start(input);
 
-		for (String thing : actual) {
-			System.out.println(thing);
-		}
-
 		assertEquals(5, actual.size());
 		assertEquals("Savings 12345678 1000.50 0.60", actual.get(0));
 		assertEquals("Deposit 12345678 700", actual.get(1));

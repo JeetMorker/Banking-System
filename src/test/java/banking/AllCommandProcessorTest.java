@@ -54,4 +54,43 @@ public class AllCommandProcessorTest {
 
 	}
 
+	@Test
+	void correctly_delegates_to_withdraw_in_capitals() {
+		CheckingAccount checkingAccount = new CheckingAccount("12345678", 2.4);
+		bank.addAccount(checkingAccount);
+		bank.deposit("12345678", 200);
+		allCommandProcessor.process("WITHDRAW 12345678 100");
+		double actual = checkingAccount.getBalance();
+
+		assertEquals(100, actual);
+	}
+
+	@Test
+	void correctly_delegates_to_pass_in_capitals() {
+		CheckingAccount checkingAccount = new CheckingAccount("12345678", 6);
+		bank.addAccount(checkingAccount);
+		bank.deposit("12345678", 100);
+		allCommandProcessor.process("PASS 1");
+		double actual = checkingAccount.getBalance();
+
+		assertEquals(100.5, actual);
+
+	}
+
+	@Test
+	void correctly_delegates_to_transfer_in_capitals() {
+		CheckingAccount checkingAccount = new CheckingAccount("12345678", 6);
+		bank.addAccount(checkingAccount);
+		bank.deposit("12345678", 200);
+		SavingsAccount savingsAccount = new SavingsAccount("87654321", 6);
+		bank.addAccount(savingsAccount);
+		bank.deposit("87654321", 500);
+		allCommandProcessor.process("TRANSFER 87654321 12345678 200");
+		double actual1 = checkingAccount.getBalance();
+		double actual2 = savingsAccount.getBalance();
+
+		assertEquals(400, actual1);
+		assertEquals(300, actual2);
+	}
+
 }

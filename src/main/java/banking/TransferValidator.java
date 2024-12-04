@@ -1,9 +1,9 @@
 package banking;
 
 public class TransferValidator {
-	private WithdrawValidator withdrawValidator;
-	private DepositValidator depositValidator;
-	private Bank bank;
+	private final WithdrawValidator withdrawValidator;
+	private final DepositValidator depositValidator;
+	private final Bank bank;
 
 	public TransferValidator(Bank bank) {
 		this.bank = bank;

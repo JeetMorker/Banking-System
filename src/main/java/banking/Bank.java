@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Bank {
-	private Map<String, AllAccounts> accounts;
+	private final Map<String, AllAccounts> accounts;
 
 	Bank() {
 		accounts = new HashMap<>();
