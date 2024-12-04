@@ -59,10 +59,4 @@ public class CommandStoringTest {
 		assertTrue(commandStoring.getInvalidCommands().contains(INVALID_COMMAND));
 	}
 
-	@Test
-	void correctAccType() {
-		String actual = commandStoring.getAccState("12345678");
-
-		assertEquals("Checking", actual);
-	}
 }

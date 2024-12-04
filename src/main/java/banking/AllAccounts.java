@@ -67,7 +67,7 @@ public abstract class AllAccounts {
 	public abstract boolean checkValidWithdraw(double amount);
 
 	public int getTime() {
-		return 0;
+		return time;
 	}
 
 	public abstract boolean canTransfer();
