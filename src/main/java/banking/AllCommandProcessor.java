@@ -9,11 +9,11 @@ public class AllCommandProcessor {
 	TransferProcessor transferProcessor;
 
 	public AllCommandProcessor(Bank bank) {
-		this.createProcessor = new CreateProcessor(bank);
-		this.depositProcessor = new DepositProcessor(bank);
+		this.transferProcessor = new TransferProcessor(bank);
 		this.withdrawProcessor = new WithdrawProcessor(bank);
 		this.passTimeProcessor = new PassTimeProcessor(bank);
-		this.transferProcessor = new TransferProcessor(bank);
+		this.createProcessor = new CreateProcessor(bank);
+		this.depositProcessor = new DepositProcessor(bank);
 	}
 
 	public void process(String command) {

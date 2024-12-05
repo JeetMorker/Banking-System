@@ -14,7 +14,9 @@ public class TransferValidator {
 	public boolean validate(String command) {
 		String[] parsedCommand = command.split(" ");
 		if (parsedCommand[0].equalsIgnoreCase("transfer") && parsedCommand.length == 4) {
-			return checkAllFeatures(parsedCommand);
+			if (!(parsedCommand[1].equalsIgnoreCase(parsedCommand[2]))) {
+				return checkAllFeatures(parsedCommand);
+			}
 		}
 		return false;
 	}

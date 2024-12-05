@@ -167,4 +167,9 @@ public class TransferValidatorTest {
 		assertFalse(actual);
 	}
 
+	@Test
+	void cannot_transfer_to_self() {
+
+	}
+
 }

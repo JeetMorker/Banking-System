@@ -10,7 +10,7 @@ public abstract class AllAccounts {
 	int time;
 	List<String> commands;
 
-	public AllAccounts(String accID, double apr, double balance) {
+	protected AllAccounts(String accID, double apr, double balance) {
 		this.accID = accID;
 		this.apr = apr;
 		this.balance = balance;

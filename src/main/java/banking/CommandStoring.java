@@ -2,14 +2,11 @@ package banking;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class CommandStoring {
 	private final List<String> invalidCommands;
 	private final Bank bank;
 	private final List<String> outputList;
-
-	private Map<String, List<String>> validCommands;
 
 	CommandStoring(Bank bank) {
 		invalidCommands = new ArrayList<>();
