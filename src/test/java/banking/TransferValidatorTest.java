@@ -169,7 +169,16 @@ public class TransferValidatorTest {
 
 	@Test
 	void cannot_transfer_to_self() {
+		boolean actual = transferValidator.validate("transfer 12345678 12345678 200");
 
+		assertFalse(actual);
+	}
+
+	@Test
+	void cannot_transfer_to_acc_that_doesnt_exist() {
+		boolean actual = transferValidator.validate("transfer 12345678 11111111 200");
+
+		assertFalse(actual);
 	}
 
 }

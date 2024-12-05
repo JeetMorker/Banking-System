@@ -77,4 +77,31 @@ public class MasterControlTest {
 		assertEquals("Deposit 12345678 5000", actual.get(4));
 	}
 
+	@Test
+	void output_tests() {
+		input.add("create checking 12345678 2.0");
+		input.add("Deposit 12345678 800");
+		input.add("create SAvings 87654321 3.0");
+		input.add("deposit 87654321 900");
+		input.add("transfer 12345678 87654321 200");
+		input.add("transfer 12345678 11111111 500");
+		input.add("transfer 88888888 12345678 200");
+		input.add("create cd 88888888 2.3 5000");
+
+		List<String> actual = masterControl.start(input);
+
+		for (String thing : actual) {
+			System.out.println(thing);
+		}
+
+		assertEquals(9, actual.size());
+		assertEquals("Checking 12345678 600.00 2.00", actual.get(0));
+		assertEquals("Deposit 12345678 800", actual.get(1));
+		assertEquals("transfer 12345678 87654321 200", actual.get(2));
+		assertEquals("Savings 87654321 1100.00 3.00", actual.get(3));
+		assertEquals("deposit 87654321 900", actual.get(4));
+		assertEquals("transfer 12345678 87654321 200", actual.get(5));
+
+	}
+
 }

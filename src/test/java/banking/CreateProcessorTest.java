@@ -54,8 +54,8 @@ public class CreateProcessorTest {
 
 	@Test
 	void creates_multiple_accounts_correctly() {
-		createProcessor.process("create savings 12345678 2.5");
-		createProcessor.process("create checking 87654321 5.0");
+		createProcessor.process("create checking 12345678 2.5");
+		createProcessor.process("create cd 87654321 5.0 5000");
 		String firstID = bank.getAccount("12345678").getID();
 		double firstAPR = bank.getAccount("12345678").getAPR();
 		String secondID = bank.getAccount("87654321").getID();
@@ -63,10 +63,10 @@ public class CreateProcessorTest {
 
 		assertEquals("12345678", firstID);
 		assertEquals(2.5, firstAPR);
-		assertTrue(bank.getAccount("12345678") instanceof SavingsAccount);
+		assertTrue(bank.getAccount("12345678") instanceof CheckingAccount);
 		assertEquals("87654321", secondID);
 		assertEquals(5.0, secondAPR);
-		assertTrue(bank.getAccount("87654321") instanceof CheckingAccount);
+		assertTrue(bank.getAccount("87654321") instanceof CDAccount);
 
 	}
 
