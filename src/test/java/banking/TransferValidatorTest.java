@@ -49,6 +49,13 @@ public class TransferValidatorTest {
 	}
 
 	@Test
+	void cannot_transfer_to_acd() {
+		boolean actual = transferValidator.validate("transfer 12345678 56781234 300");
+
+		assertFalse(actual);
+	}
+
+	@Test
 	void transfer_in_capitals_is_valid() {
 		boolean actual = transferValidator.validate("TRANSFER 87654321 12345678 200");
 
@@ -163,6 +170,27 @@ public class TransferValidatorTest {
 	void cannot_transfer_from_savings_more_than_once_per_month() {
 		transferProcessor.process("transfer 87654321 12345678 200");
 		boolean actual = transferValidator.validate("transfer 87654321 12345678 100");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void cannot_transfer_to_self() {
+		boolean actual = transferValidator.validate("transfer 12345678 12345678 200");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void cannot_transfer_to_acc_that_doesnt_exist() {
+		boolean actual = transferValidator.validate("transfer 12345678 11111111 200");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void only_transfer_invalid() {
+		boolean actual = transferValidator.validate("transfer");
 
 		assertFalse(actual);
 	}

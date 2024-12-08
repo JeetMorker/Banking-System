@@ -1,15 +1,14 @@
 package banking;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class CommandStoring {
 	private final List<String> invalidCommands;
 	private final Bank bank;
 	private final List<String> outputList;
-
-	private Map<String, List<String>> validCommands;
 
 	CommandStoring(Bank bank) {
 		invalidCommands = new ArrayList<>();
@@ -40,9 +39,11 @@ public class CommandStoring {
 	public String getAccState(String accID) {
 		String accType = bank.getAccType(accID);
 		double bal = bank.getAccount(accID).getBalance();
-		String balance = String.format("%.2f", bal);
+		DecimalFormat decimalFormat = new DecimalFormat("0.00");
+		decimalFormat.setRoundingMode(RoundingMode.FLOOR);
+		String balance = decimalFormat.format(bal);
 		double aprVal = bank.getAccount(accID).getAPR();
-		String apr = String.format("%.2f", aprVal);
+		String apr = decimalFormat.format(aprVal);
 		return accType + " " + accID + " " + balance + " " + apr;
 	}
 

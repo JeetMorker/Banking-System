@@ -21,8 +21,8 @@ public class CreateProcessor {
 	}
 
 	public void createChecking(String[] parsedCommand) {
-		CheckingAccount checkingAccount;
 		double apr = Double.parseDouble(parsedCommand[3]);
+		CheckingAccount checkingAccount;
 		checkingAccount = new CheckingAccount(parsedCommand[2], apr);
 		bank.addAccount(checkingAccount);
 	}

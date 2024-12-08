@@ -13,7 +13,8 @@ public class TransferValidator {
 
 	public boolean validate(String command) {
 		String[] parsedCommand = command.split(" ");
-		if (parsedCommand[0].equalsIgnoreCase("transfer") && parsedCommand.length == 4) {
+		if (parsedCommand[0].equalsIgnoreCase("transfer") && parsedCommand.length == 4
+				&& !(parsedCommand[1].equalsIgnoreCase(parsedCommand[2]))) {
 			return checkAllFeatures(parsedCommand);
 		}
 		return false;
@@ -26,7 +27,7 @@ public class TransferValidator {
 
 	}
 
-	public boolean check_if_acc_can_transfer(String[] parsedCommand) {
+	public boolean checkIfAccCanTransfer(String[] parsedCommand) {
 		if (bank.checkExistingID(parsedCommand[1]) && bank.checkExistingID(parsedCommand[2])) {
 			return bank.canTransfer(parsedCommand[1]) && bank.canTransfer(parsedCommand[2]);
 		}
@@ -34,7 +35,7 @@ public class TransferValidator {
 	}
 
 	public boolean checkAllFeatures(String[] parsedCommand) {
-		if (check_if_acc_can_transfer(parsedCommand)) {
+		if (checkIfAccCanTransfer(parsedCommand)) {
 			return checkDepositAndWithdraw(parsedCommand);
 		}
 		return false;
