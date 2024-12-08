@@ -167,6 +167,13 @@ public class CreateValidatorTest {
 	}
 
 	@Test
+	void invalid_apr() {
+		boolean actual = createValidator.validate("create checking 12345678 11");
+
+		assertFalse(actual);
+	}
+
+	@Test
 	void number_in_checking_invalid() {
 		boolean actual = createValidator.validate("create ch3cking 12345678 3");
 

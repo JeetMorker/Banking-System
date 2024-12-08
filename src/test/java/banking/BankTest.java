@@ -96,4 +96,14 @@ public class BankTest {
 
 	}
 
+	@Test
+	void public_void_withdraw_turns_to_0() {
+		bank.addAccount(checking);
+		bank.deposit(FIRST_ID, 200);
+		bank.withdraw(FIRST_ID, 200);
+		double actual = bank.getAccount(FIRST_ID).getBalance();
+
+		assertEquals(0, actual);
+	}
+
 }

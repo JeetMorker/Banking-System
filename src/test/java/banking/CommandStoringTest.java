@@ -3,6 +3,8 @@ package banking;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -57,6 +59,16 @@ public class CommandStoringTest {
 		commandStoring.addInvalidCommand(INVALID_COMMAND);
 
 		assertTrue(commandStoring.getInvalidCommands().contains(INVALID_COMMAND));
+	}
+
+	@Test
+	void tester() {
+		CheckingAccount check = new CheckingAccount("56781234", 2.4);
+		bank.addAccount(check);
+
+		List<String> actual = commandStoring.getOutput();
+		assertEquals("Checking 12345678 0.00 2.20", actual.get(0));
+		assertEquals("Checking 56781234 0.00 2.40", actual.get(1));
 	}
 
 }

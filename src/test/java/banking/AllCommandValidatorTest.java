@@ -107,6 +107,13 @@ public class AllCommandValidatorTest {
 	}
 
 	@Test
+	void invalid_create() {
+		boolean actual = allCommandValidator.validate("create ABCD 200 1");
+
+		assertFalse(actual);
+	}
+
+	@Test
 	void invalid_withdraw() {
 		boolean actual = allCommandValidator.validate("withdraw 12345678 -4");
 
