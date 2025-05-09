@@ -15,5 +15,4 @@ This project is a **console-based banking system** built in Java that allows use
 - JUnit (for unit testing)
 - Git (for version control)
 
-## Project Structure
 
